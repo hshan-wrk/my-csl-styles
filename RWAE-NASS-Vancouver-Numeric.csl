@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <info>
+    <title>Research on World Agricultural Economy (RWAE) - NASS Vancouver Numeric</title>
+    <id>http://www.zotero.org/styles/rwae-nass-vancouver-numeric</id>
+    <link href="http://www.zotero.org/styles/rwae-nass-vancouver-numeric" rel="self"/>
+    <link href="https://journals.nasspublishing.com/index.php/rwae/for-authors" rel="documentation"/>
+    <author>
+      <name>OpenAI Codex</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="agriculture"/>
+    <summary>RWAE numeric style with bracketed Vancouver citations and a reference list formatted to match the journal template as closely as practical in CSL.</summary>
+    <updated>2026-04-19T00:00:00+07:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This style may be shared and adapted with attribution.</rights>
+  </info>
+
+  <locale xml:lang="en-US">
+    <terms>
+      <term name="edition" form="short">ed.</term>
+      <term name="page-range-delimiter">-</term>
+      <term name="retrieved">Retrieved from</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author" delimiter=", " et-al-min="4" et-al-use-first="3">
+      <name name-as-sort-order="all" sort-separator=", " initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
+      <et-al font-style="normal"/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text variable="publisher"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued-year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="title-sentence">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="container-journal">
+    <group delimiter=". ">
+      <text variable="container-title"/>
+      <group delimiter=", ">
+        <group delimiter="">
+        <text variable="volume"/>
+        <group prefix="(" suffix=")">
+          <text variable="issue"/>
+        </group>
+        </group>
+        <text variable="page"/>
+      </group>
+    </group>
+  </macro>
+
+  <macro name="edition-book">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else-if variable="edition">
+        <text variable="edition"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="publisher-book">
+    <group delimiter=": ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+
+  <macro name="book-publishing">
+    <choose>
+      <if variable="edition">
+        <text macro="publisher-book" prefix="; "/>
+      </if>
+      <else>
+        <text macro="publisher-book"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="book-main">
+    <choose>
+      <if variable="edition">
+        <group delimiter="">
+          <text variable="title"/>
+          <text macro="edition-book" prefix=", "/>
+          <text macro="publisher-book" prefix="; "/>
+        </group>
+      </if>
+      <else>
+        <group delimiter=". ">
+          <text variable="title"/>
+          <text macro="publisher-book"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="pages-book">
+    <choose>
+      <if variable="number-of-pages">
+        <group delimiter=" ">
+          <text term="page" form="short" plural="true" text-case="lowercase"/>
+          <text variable="number-of-pages"/>
+        </group>
+      </if>
+      <else-if variable="page">
+        <group delimiter=" ">
+          <text term="page" form="short" plural="true" text-case="lowercase"/>
+          <text variable="page"/>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="thesis-type">
+    <choose>
+      <if type="thesis dissertation" match="any">
+        <text variable="genre"/>
+      </if>
+      <else>
+        <text value="Thesis/Dissertation"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="doi-url">
+    <choose>
+      <if variable="DOI">
+        <group delimiter="">
+          <text value="DOI: https://doi.org/"/>
+          <text variable="DOI"/>
+        </group>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="accessed-url">
+    <choose>
+      <if variable="URL">
+        <group delimiter=". ">
+          <group delimiter=" ">
+            <text term="retrieved"/>
+            <text value="from"/>
+            <text variable="container-title"/>
+          </group>
+          <text variable="URL"/>
+          <group prefix="(" suffix=")">
+            <text value="Accessed "/>
+            <date variable="accessed">
+              <date-part name="day"/>
+              <date-part name="month" form="long" prefix=" "/>
+              <date-part name="year" prefix=" "/>
+            </date>
+          </group>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=",">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="4" et-al-use-first="3" second-field-align="flush">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" prefix="[" suffix="] "/>
+      <choose>
+        <if type="article-journal article-magazine article-newspaper" match="any">
+          <group delimiter=". ">
+            <group delimiter=", ">
+              <text macro="author"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="title-sentence"/>
+            <text macro="container-journal"/>
+            <text macro="doi-url"/>
+          </group>
+        </if>
+        <else-if type="book">
+          <group delimiter=". ">
+            <group delimiter=", ">
+              <text macro="author"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="book-main"/>
+            <text macro="pages-book"/>
+            <text macro="doi-url"/>
+          </group>
+        </else-if>
+        <else-if type="chapter paper-conference" match="any">
+          <group delimiter=". ">
+            <group delimiter=", ">
+              <text macro="author"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="title-sentence"/>
+            <group delimiter=" ">
+              <text value="In:"/>
+              <names variable="editor" delimiter=", " et-al-min="4" et-al-use-first="3">
+                <name name-as-sort-order="all" sort-separator=", " initialize-with="." delimiter=", " delimiter-precedes-last="always"/>
+              </names>
+              <text value="editors"/>
+            </group>
+            <text variable="container-title"/>
+            <text macro="publisher-book"/>
+            <group prefix="p. ">
+              <text variable="page"/>
+            </group>
+            <text macro="doi-url"/>
+          </group>
+        </else-if>
+        <else-if type="thesis dissertation" match="any">
+          <group delimiter=". ">
+            <group delimiter=", ">
+              <text macro="author"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="title-sentence"/>
+            <text macro="thesis-type"/>
+            <group delimiter=": ">
+              <text variable="publisher"/>
+              <text variable="publisher-place"/>
+            </group>
+            <text macro="doi-url"/>
+          </group>
+        </else-if>
+        <else-if type="report standard patent webpage post-weblog" match="any">
+          <group delimiter=". ">
+            <group delimiter=", ">
+              <text macro="author"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="title-sentence"/>
+            <choose>
+              <if type="report standard patent" match="any">
+                <group delimiter=": ">
+                  <text variable="publisher"/>
+                  <text variable="publisher-place"/>
+                </group>
+              </if>
+            </choose>
+            <text macro="accessed-url"/>
+            <choose>
+              <if variable="URL DOI">
+                <text macro="doi-url"/>
+              </if>
+            </choose>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=". ">
+            <group delimiter=", ">
+              <text macro="author"/>
+              <text macro="issued-year"/>
+            </group>
+            <text macro="title-sentence"/>
+            <text variable="container-title"/>
+            <text macro="publisher-book"/>
+            <text variable="page"/>
+            <text macro="doi-url"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
