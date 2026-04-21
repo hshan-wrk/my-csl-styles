@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>Research on World Agricultural Economy (RWAE) - NASS Vancouver Numeric</title>
-    <id>http://www.zotero.org/styles/rwae-nass-vancouver-numeric</id>
-    <link href="http://www.zotero.org/styles/rwae-nass-vancouver-numeric" rel="self"/>
+    <title>Research on World Agricultural Economy (RWAE) - NASS Vancouver Numeric Superscript Brackets</title>
+    <title-short>RWAE NASS Vancouver Numeric Superscript</title-short>
+    <id>http://www.zotero.org/styles/rwae-nass-vancouver-numeric-superscript</id>
+    <link href="http://www.zotero.org/styles/rwae-nass-vancouver-numeric-superscript" rel="self"/>
     <link href="https://journals.nasspublishing.com/index.php/rwae/for-authors" rel="documentation"/>
     <author>
       <name>OpenAI Codex</name>
     </author>
     <category citation-format="numeric"/>
     <category field="generic-base"/>
-    <summary>RWAE numeric style with bracketed Vancouver citations and a reference list formatted to match the journal template as closely as practical in CSL.</summary>
-    <updated>2026-04-19T00:00:00+07:00</updated>
+    <summary>RWAE numeric style with bracketed Vancouver citations in superscript and a reference list formatted to match the journal template as closely as practical in CSL.</summary>
+    <updated>2026-04-21T00:00:00+07:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This style may be shared and adapted with attribution.</rights>
   </info>
 
@@ -51,10 +52,10 @@
       <text variable="container-title"/>
       <group delimiter=", ">
         <group delimiter="">
-        <text variable="volume"/>
-        <group prefix="(" suffix=")">
-          <text variable="issue"/>
-        </group>
+          <text variable="volume"/>
+          <group prefix="(" suffix=")">
+            <text variable="issue"/>
+          </group>
         </group>
         <text variable="page"/>
       </group>
@@ -180,7 +181,7 @@
     <sort>
       <key variable="citation-number"/>
     </sort>
-    <layout prefix="[" suffix="]" delimiter=",">
+    <layout prefix="[" suffix="]" delimiter="," vertical-align="sup">
       <text variable="citation-number"/>
     </layout>
   </citation>
